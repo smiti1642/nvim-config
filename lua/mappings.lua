@@ -8,8 +8,8 @@ map("n", "<leader>ld", "<cmd>Telescope diagnostics <CR>", { desc = "Workspace di
 map("n", "<leader>lb", "<cmd>Telescope lsp_document_symbols <CR>", { desc = "Buffer symbols" })
 map("n", "<leader>lw", "<cmd>Telescope lsp_dynamic_workspace_symbols <CR>", { desc = "WorkSpace symbols" })
 
--- Copilot use Ctrl+l to accept
-map('i', '<C-l>', function ()
+-- Copilot use Ctrl+q to accept
+map('i', '<C-q>', function ()
   vim.fn.feedkeys(vim.fn['copilot#Accept'](), '')
 end, { desc = 'Copilot Accept', noremap = true, silent = true })
 
