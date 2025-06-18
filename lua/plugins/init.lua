@@ -35,8 +35,23 @@ return {
     opts = {
       -- See Configuration section for options
     },
+
+    lazy =  false,
     -- See Commands section for default commands if you want to lazy load on them
   },
+
+   -- test new blink
+  { import = "nvchad.blink.lazyspec" },
+
+  -- For CopilotChat, and need to install fzf in terminal
+  {
+    "ibhagwan/fzf-lua",
+    config = function()
+      require("fzf-lua").register_ui_select()
+    end,
+    lazy = false, -- Load fzf-lua on startup
+  },
+  
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
