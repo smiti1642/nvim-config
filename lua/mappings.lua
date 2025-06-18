@@ -16,4 +16,6 @@ end, { desc = 'Copilot Accept', noremap = true, silent = true })
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
+map("n", "<leader>s", "<cmd>CopilotChat<CR>", { desc = "Open CopilotChat" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
