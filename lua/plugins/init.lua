@@ -28,15 +28,46 @@ return {
       { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
     },
-    
-    -- remove if you use neither macOS or Linux
-    -- build = "make tiktoken", -- Only on macOS or Linux
-    
-    opts = {
-      -- See Configuration section for options
-    },
+    -- build = "make tiktoken", -- Only on MacOS or Linux
+    lazy = false,
 
-    lazy =  false,
+    config = function()
+      local function slurp(path)
+        local file = io.open(path, "r")
+        if not file then
+          return nil
+        end
+        local content = file:read "*all"
+        file:close()
+        return content
+      end
+
+      local prompt_path = vim.fn.getcwd() .. "/.github/prompt.md"
+      local custom_prompt = slurp(prompt_path)
+      if custom_prompt then
+        require("CopilotChat").setup {
+          system_prompt = custom_prompt,
+        }
+        print "[CopilotChat] Loaded project custom prompt"
+      else
+        print "[CopilotChat] No custom prompt found for this project, using default Copilot behavior"
+      end
+
+      vim.api.nvim_create_autocmd("DirChanged", {
+        callback = function()
+          local prompt_path = vim.fn.getcwd() .. "/.github/prompt.md"
+          local custom_prompt = slurp(prompt_path)
+          if custom_prompt then
+            require("CopilotChat").setup {
+              system_prompt = custom_prompt,
+            }
+            print "[CopilotChat] Reloaded custom prompt for current project"
+          else
+            print "[CopilotChat] No custom prompt found for this project, using default Copilot behavior"
+          end
+        end,
+      })
+    end,
     -- See Commands section for default commands if you want to lazy load on them
   },
 
