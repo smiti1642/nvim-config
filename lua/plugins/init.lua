@@ -35,7 +35,7 @@ return {
       local function slurp(path)
         local file = io.open(path, "r")
         if not file then
-          return nil
+          return ""
         end
         local content = file:read "*all"
         file:close()
