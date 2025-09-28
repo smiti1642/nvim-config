@@ -4,8 +4,23 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "rust_analyzer", "clangd" }
+local servers = { "html", "cssls", "rust_analyzer", "clangd", "pyright" }
 local nvlsp = require "nvchad.configs.lspconfig"
+
+-- Enable Python Strict Mode
+lspconfig.pyright.setup {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "strict", -- 可選 "off", "basic", "strict"
+        autoImportCompletions = true,
+      },
+    },
+  },
+}
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do

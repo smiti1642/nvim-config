@@ -21,7 +21,7 @@ return {
       vim.g.copilot_assume_mapped = true; -- Assume that the mapping is already done
     end
   },
-  
+
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
@@ -52,21 +52,6 @@ return {
       else
         print "[CopilotChat] No custom prompt found for this project, using default Copilot behavior"
       end
-
-      vim.api.nvim_create_autocmd("DirChanged", {
-        callback = function()
-          local prompt_path = vim.fn.getcwd() .. "/.github/prompt.md"
-          local custom_prompt = slurp(prompt_path)
-          if custom_prompt then
-            require("CopilotChat").setup {
-              system_prompt = custom_prompt,
-            }
-            print "[CopilotChat] Reloaded custom prompt for current project"
-          else
-            print "[CopilotChat] No custom prompt found for this project, using default Copilot behavior"
-          end
-        end,
-      })
     end,
     -- See Commands section for default commands if you want to lazy load on them
   },
@@ -82,7 +67,7 @@ return {
     end,
     lazy = false, -- Load fzf-lua on startup
   },
-  
+
   -- {
   -- 	"nvim-treesitter/nvim-treesitter",
   -- 	opts = {
