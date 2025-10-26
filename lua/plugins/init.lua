@@ -77,4 +77,47 @@ return {
   -- 		},
   -- 	},
   -- },
+
+  -- Add/change/delete surrounding pairs with ys, cs, ds.
+  -- Example: ysiw' to surround inner word with ', ds' to delete, cs'" to change ' to ".
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration options go here
+      })
+    end
+  },
+
+  -- Navigate your code with light speed.
+  -- Press 's' (or your configured key) to show labels, then type the label to jump.
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      modes = {
+        char = {
+          jump_labels = true,
+        },
+      },
+    },
+  },
+
+  -- Adds debugging capabilities (breakpoints, stepping, etc.) to Neovim.
+  -- Requires language-specific debug adapters to be installed separately.
+  {
+    "mfussenegger/nvim-dap",
+    lazy = false,
+    dependencies = {
+      "rcarriga/nvim-dap-ui", -- UI for nvim-dap
+      "theHamsta/nvim-dap-virtual-text", -- Shows virtual text for debugging
+      "jay-babu/mason-nvim-dap.nvim", -- Bridges mason and nvim-dap
+      "nvim-neotest/nvim-nio", -- Dependency for nvim-dap-ui
+    },
+    config = function()
+      require("configs.dap")
+    end,
+  },
 }
