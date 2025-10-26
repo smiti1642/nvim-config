@@ -32,13 +32,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       automatic_installation = true,
-      ensure_installed = {
-        "html",
-        "cssls",
-        "rust_analyzer",
-        "clangd",
-        "pyright",
-      },
+      ensure_installed = require("configs.lsp_servers"),
     },
   },
 

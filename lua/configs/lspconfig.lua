@@ -8,7 +8,7 @@ require("mason-lspconfig").setup()
 local nvlsp = require("nvchad.configs.lspconfig")
 
 -- List of servers
-local servers = { "html", "cssls", "rust_analyzer", "clangd", "pyright" }
+local servers = require("configs.lsp_servers")
 
 -- Define Python with strict mode
 vim.lsp.config("pyright", {
