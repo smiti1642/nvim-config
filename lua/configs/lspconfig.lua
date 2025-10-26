@@ -1,6 +1,9 @@
 -- Load NvChad's LSP defaults
 require("nvchad.configs.lspconfig").defaults()
 
+-- 確保 Mason 與 nvim-lspconfig 整合
+require("mason-lspconfig").setup()
+
 -- NvChad helpers
 local nvlsp = require("nvchad.configs.lspconfig")
 

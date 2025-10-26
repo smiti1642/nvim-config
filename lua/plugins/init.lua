@@ -13,6 +13,35 @@ return {
     end,
   },
 
+  -- Mason: LSP 安裝管理器
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+      },
+    },
+  },
+
+  -- Mason 與 nvim-lspconfig 的橋樑
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      automatic_installation = true,
+      ensure_installed = {
+        "html",
+        "cssls",
+        "rust_analyzer",
+        "clangd",
+        "pyright",
+      },
+    },
+  },
+
   {
     "github/copilot.vim",
     lazy = false,
