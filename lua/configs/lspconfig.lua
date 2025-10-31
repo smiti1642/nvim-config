@@ -1,24 +1,41 @@
--- load defaults i.e lua_lsp
+-- Load NvChad's LSP defaults
 require("nvchad.configs.lspconfig").defaults()
 
-local lspconfig = require "lspconfig"
+-- NvChad helpers
+local nvlsp = require("nvchad.configs.lspconfig")
 
--- EXAMPLE
-local servers = { "html", "cssls", "rust_analyzer", "clangd" }
-local nvlsp = require "nvchad.configs.lspconfig"
+-- List of servers
+local servers = require("configs.lsp_servers")
 
--- lsps with default config
+-- Define Python with strict mode
+vim.lsp.config("pyright", {
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "strict",
+        autoImportCompletions = true,
+      },
+    },
+  },
+})
+
+-- Apply defaults for other servers
 for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
+  if lsp ~= "pyright" then
+    vim.lsp.config(lsp, {
+      on_attach = nvlsp.on_attach,
+      on_init = nvlsp.on_init,
+      capabilities = nvlsp.capabilities,
+    })
+  end
 end
 
--- configuring single server, example: typescript
--- lspconfig.ts_ls.setup {
+-- Optional example: TypeScript
+-- vim.lsp.config("ts_ls", {
 --   on_attach = nvlsp.on_attach,
 --   on_init = nvlsp.on_init,
 --   capabilities = nvlsp.capabilities,
--- }
+-- })
