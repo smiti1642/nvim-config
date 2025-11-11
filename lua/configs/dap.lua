@@ -93,6 +93,21 @@ end
 
 configure_codelldb()
 
+-- VS-style breakpoint/stopped icons with color highlights
+local sign = vim.fn.sign_define
+local hl = vim.api.nvim_set_hl
+
+hl(0, "DapBreakpoint", { fg = "#ff5555" })
+hl(0, "DapStopped", { fg = "#00ff88" })
+hl(0, "DapBreakpointCondition", { fg = "#f6c177" })
+hl(0, "DapLogPoint", { fg = "#61afef" })
+
+sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+sign("DapBreakpointRejected", { text = "", texthl = "DiagnosticError", linehl = "", numhl = "" })
+sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+sign("DapStopped", { text = "", texthl = "DapStopped", linehl = "CursorLine", numhl = "" })
+
 dapui.setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()

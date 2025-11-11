@@ -29,6 +29,12 @@ map('n', '<F10>', function() dap.step_over() end, { desc = "DAP: Step Over" })
 map('n', '<F11>', function() dap.step_into() end, { desc = "DAP: Step Into" })
 map('n', '<S-F11>', function() dap.step_out() end, { desc = "DAP: Step Out" })
 map('n', '<leader>du', function() require('dapui').toggle() end, { desc = "DAP: Toggle UI" })
+map('n', '<leader>db', function()
+  local condition = vim.fn.input("Breakpoint condition: ")
+  if condition ~= '' then
+    dap.set_breakpoint(condition)
+  end
+end, { desc = "DAP: Conditional Breakpoint" })
 
 -- Flash (enhanced navigation)
 -- Use 's' to trigger flash jump in normal, visual and operator-pending modes
