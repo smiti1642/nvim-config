@@ -4,8 +4,8 @@ local options = {
     rust = { "rustfmt" },
     cpp = { "clang-format" },
     python = { "black", "isort" },
-    -- css = { "prettier" },
-    -- html = { "prettier" },
+    css = { "prettier" },
+    html = { "prettier" },
   },
 
   format_on_save = {
