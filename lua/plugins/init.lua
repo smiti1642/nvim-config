@@ -37,9 +37,9 @@ return {
     "github/copilot.vim",
     lazy = false,
     config = function() -- Mapping tab is already used in NvChad
-      vim.g.copilot_no_tab_map = true; -- Disable tab mapping
-      vim.g.copilot_assume_mapped = true; -- Assume that the mapping is already done
-    end
+      vim.g.copilot_no_tab_map = true -- Disable tab mapping
+      vim.g.copilot_assume_mapped = true -- Assume that the mapping is already done
+    end,
   },
 
   {
@@ -76,7 +76,7 @@ return {
     -- See Commands section for default commands if you want to lazy load on them
   },
 
-   -- test new blink
+  -- test new blink
   { import = "nvchad.blink.lazyspec" },
 
   -- For CopilotChat, and need to install fzf in terminal
@@ -105,10 +105,10 @@ return {
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup({
+      require("nvim-surround").setup {
         -- Configuration options go here
-      })
-    end
+      }
+    end,
   },
 
   -- Navigate your code with light speed.
@@ -137,7 +137,7 @@ return {
       "nvim-neotest/nvim-nio", -- Dependency for nvim-dap-ui
     },
     config = function()
-      require("configs.dap")
+      require "configs.dap"
     end,
   },
 }
